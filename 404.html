@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es-CR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VirtualTech — Abriendo su instalación…</title>
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b5563'/%3E%3Cpolyline points='6 17 11 17 14 10 18 23 21 17 26 17' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+  body{margin:0;background:#faf7f2;color:#17262e;font:400 17px/1.6 "Segoe UI",system-ui,Arial,sans-serif;
+       min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px}
+  .logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:22px;margin-bottom:14px}
+  .logo svg{width:34px;height:34px}
+  a{color:#0b5563}
+</style>
+</head>
+<body>
+<div>
+  <div class="logo">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0b5563"/><polyline points="6 17 11 17 14 10 18 23 21 17 26 17" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    VirtualTech
+  </div>
+  <p id="msg">Abriendo su instalación…</p>
+</div>
+<script>
+  // Redirect branded -> link real de instalacion. Cambiar DESTINO cuando este el dominio propio.
+  // Acepta /i/<codigo> (por el 404 catch-all de GitHub Pages) o ?c=<codigo>.
+  (function () {
+    var DESTINO = "https://desktop-slnaotl.tail87d8b3.ts.net";
+    var code = null;
+    var m = location.pathname.match(/\/i\/([A-Za-z0-9_-]{10,40})\/?$/);
+    if (m) { code = m[1]; }
+    if (!code) {
+      try { var q = new URLSearchParams(location.search).get("c"); if (q && /^[A-Za-z0-9_-]{10,40}$/.test(q)) code = q; } catch (e) {}
+    }
+    if (code) {
+      location.replace(DESTINO + "/i/" + code);
+    } else {
+      document.getElementById("msg").innerHTML =
+        'Use el enlace completo que le dio su técnico (termina en <b>/i/…</b>). ' +
+        '<br><a href="/">Ir a VirtualTech</a>';
+    }
+  })();
+</script>
+</body>
+</html>
